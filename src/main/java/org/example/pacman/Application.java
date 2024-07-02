@@ -47,6 +47,7 @@ public class Application extends javafx.application.Application implements Event
                 BLOCK_SIZE * Y_BLOCKS, BLOCK_SIZE * X_BLOCKS));
         game.addInky(new Inky(180, 330, Game.Direction.U, root, BLOCK_SIZE));
 
+        stage.setResizable(false);
         stage.getIcons().add(favicon);
         stage.setTitle("Pacman");
         stage.setScene(scene);
