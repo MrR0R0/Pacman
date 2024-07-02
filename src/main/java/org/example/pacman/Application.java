@@ -1,5 +1,6 @@
 package org.example.pacman;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.Objects;
 import org.example.pacman.Database.Connect;
 
@@ -24,17 +27,13 @@ public class Application extends javafx.application.Application implements Event
         double secPerFrame = ((double) 1 / FRAME_RATE);
         User.signedUpUsers = Connect.getUsers();
         stage = primaryStage;
+        stage.setResizable(false);
         switch (Menu.currentMenu){
-            case Authentication -> {
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("authentication.fxml")));
-                scene = new Scene(root, 700, 500);
-                primaryStage.setTitle("Login");
-                primaryStage.setScene(scene);
-                primaryStage.setResizable(false);
-                primaryStage.show();
+            case Login -> {
+                loadLoginMenu();
             }
             case SignUp -> {
-                System.out.println("Hi");
+                loadSignupMenu();
             }
         }
 
@@ -100,4 +99,22 @@ public class Application extends javafx.application.Application implements Event
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static void loadSignupMenu() throws IOException {
+        Menu.currentMenu = Menu.MenuType.SignUp;
+        Application.root = FXMLLoader.load(Objects.requireNonNull(Application.class.getResource("signup.fxml")));
+        Application.scene = new Scene(Application.root, 700, 500);
+        Application.stage.setTitle("Signup");
+        Application.stage.setScene(scene);
+        Application.stage.show();
+    }
+
+    public static void loadLoginMenu() throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(Application.class.getResource("login.fxml")));
+        scene = new Scene(root, 700, 500);
+        Application.stage.setTitle("Login");
+        Application.stage.setScene(scene);
+        Application.stage.show();
+    }
+
 }

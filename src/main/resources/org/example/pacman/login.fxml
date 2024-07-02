@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="border" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pacman.Authentication">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="border" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pacman.Login">
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="718.0" BorderPane.alignment="CENTER">
          <children>
@@ -48,6 +48,6 @@
       </AnchorPane>
    </center>
    <stylesheets>
-      <URL value="@authentication.css" />
+      <URL value="@login.css" />
    </stylesheets>
 </BorderPane>
