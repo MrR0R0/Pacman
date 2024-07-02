@@ -1,33 +1,45 @@
 package org.example.pacman;
 
-import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.example.pacman.Ghost.Clyde;
-import org.example.pacman.Ghost.Inky;
-import org.example.pacman.Ghost.Pinky;
-import org.example.pacman.Ghost.Shadow;
-import org.example.pacman.Map.MapGenerator;
-
-import java.io.IOException;
+import java.util.Objects;
+import org.example.pacman.Database.Connect;
 
 
 public class Application extends javafx.application.Application implements EventHandler<KeyEvent> {
-    Game game;
+    static public Game game;
+    static public Parent root;
+    static public Scene scene;
+    static public Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         final int BLOCK_SIZE = 30, FRAME_RATE = 40;
         int X_BLOCKS, Y_BLOCKS;
         double secPerFrame = ((double) 1 / FRAME_RATE);
-        Group root = new Group();
+        User.signedUpUsers = Connect.getUsers();
+        stage = primaryStage;
+        switch (Menu.currentMenu){
+            case Authentication -> {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("authentication.fxml")));
+                scene = new Scene(root, 700, 500);
+                primaryStage.setTitle("Login");
+                primaryStage.setScene(scene);
+                primaryStage.setResizable(false);
+                primaryStage.show();
+            }
+            case SignUp -> {
+                System.out.println("Hi");
+            }
+        }
+
+        //controller.run(primaryStage);
+        /*
         MapGenerator.generate("src\\main\\resources\\drafts\\map1.txt");
         game = new Game(BLOCK_SIZE, root);
         X_BLOCKS = game.getCol();
@@ -69,6 +81,7 @@ public class Application extends javafx.application.Application implements Event
             }
         };
         timer.start();
+         */
     }
 
     @Override
