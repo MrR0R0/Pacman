@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 import org.example.pacman.Database.Connect;
 
@@ -36,6 +37,16 @@ public class Application extends javafx.application.Application implements Event
                 loadSignupMenu();
             }
         }
+        primaryStage.setOnCloseRequest(event -> {
+            event.consume(); // Consume the event to prevent default close operation
+            try {
+                User.saveToDatabase();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            primaryStage.close();
+            //System.exit(0);
+        });
 
         //controller.run(primaryStage);
         /*

@@ -1,5 +1,8 @@
 package org.example.pacman;
 
+import org.example.pacman.Database.Connect;
+
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 
 public class User {
@@ -25,5 +28,12 @@ public class User {
 
     public String getScoreSeries() {
         return scoreSeries;
+    }
+
+    public static void saveToDatabase() throws SQLException {
+        Connect.clearUsersTable();
+        for(User user : signedUpUsers.values()){
+            Connect.insertUser(user);
+        }
     }
 }

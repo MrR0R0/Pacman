@@ -19,7 +19,7 @@ public class Connect {
     }
 
     public static void insertUser(User user) throws SQLException {
-        String sql = "INSERT INTO users (username, password, cardSeries) VALUES(?,?,?)";
+        String sql = "INSERT INTO users (username, password, scoreSeries) VALUES(?,?,?)";
         try {
             connectToDatabase();
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -27,6 +27,19 @@ public class Connect {
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getScoreSeries());
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            connection.close();
+        }
+    }
+
+    public static void clearUsersTable() throws SQLException {
+        try {
+            connectToDatabase();
+            Statement stmt = connection.createStatement();
+            String deleteQuery = "DELETE FROM users";
+            stmt.executeUpdate(deleteQuery);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {

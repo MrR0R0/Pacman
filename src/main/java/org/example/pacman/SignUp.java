@@ -58,7 +58,7 @@ public class SignUp {
             warningLabel.setText("Signed up successfully!");
             new Thread(() -> {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(1500);
                     Platform.runLater(() -> {
                         try {
                             warningLabel.setTextFill(Color.RED);
