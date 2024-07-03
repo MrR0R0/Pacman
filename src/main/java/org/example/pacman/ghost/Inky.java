@@ -1,22 +1,24 @@
-package org.example.pacman.Ghost;
+package org.example.pacman.ghost;
+
 
 import javafx.scene.Group;
-import org.example.pacman.Game;
-import org.example.pacman.Map.*;
+import org.example.pacman.app.Game;
+import org.example.pacman.map.Cell;
 
 import java.util.List;
 import java.util.Random;
 
-//Moves randomly
-public class Clyde extends Ghost {
+//Protects a certain area of the map
+public class Inky extends Ghost{
     private int moveCounter;
+    private Cell prevCell = null;
 
-    public Clyde(int x, int y, Game.Direction dir, Group root, int blockSize) {
+    public Inky(int x, int y, Game.Direction dir, Group root, int blockSize){
         this.x = x;
         this.y = y;
         this.blockSize = blockSize;
         setSpeed(dir);
-        imageView = imageViewSetUp("file:src\\main\\resources\\clyde\\down.gif");
+        imageView = imageViewSetUp("file:src\\main\\resources\\inky\\down.gif");
         root.getChildren().add(imageView);
     }
 
@@ -27,8 +29,11 @@ public class Clyde extends Ghost {
         if (valid.contains(oppositeDir) && valid.size() > 1) {
             valid.remove(oppositeDir);
         }
-        if (valid.contains(currentDir) && valid.size() > 1) {
-            valid.remove(currentDir);
+        if(valid.contains(Game.Direction.L)) {
+            return Game.Direction.L;
+        }
+        if(valid.contains(Game.Direction.D)){
+            return Game.Direction.D;
         }
         return valid.get(new Random().nextInt(valid.size()));
     }
@@ -84,5 +89,4 @@ public class Clyde extends Ghost {
         imageView.setX(x);
         imageView.setY(y);
     }
-
 }

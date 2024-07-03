@@ -1,4 +1,4 @@
-package org.example.pacman.Database;
+package org.example.pacman.database;
 
 import org.example.pacman.User;
 

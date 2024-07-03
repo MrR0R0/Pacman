@@ -1,4 +1,4 @@
-package org.example.pacman.Map;
+package org.example.pacman.map;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,9 +27,13 @@ public class MapGenerator {
         int[][] newMap = new int[rowCounter][colCounter];
         for (int i = 0; i < rowCounter; i++) {
             for (int j = 0; j < colCounter; j++) {
-                if (map.get(i).get(j).equals("256")) {
+                if(map.get(i).get(j).equals("-1")){
+                    newMap[i][j] = -1;
+                }
+                else if (map.get(i).get(j).equals("256")) {
                     newMap[i][j] = 256;
-                } else {
+                }
+                else {
                     if (j > 0 && map.get(i).get(j - 1).equals("256")) {
                         newMap[i][j] += 1;
                     }

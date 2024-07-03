@@ -5,5 +5,7 @@ module org.example.pacman {
 
     opens org.example.pacman to javafx.fxml;
     exports org.example.pacman;
-    exports org.example.pacman.Map;
+    exports org.example.pacman.map;
+    exports org.example.pacman.app;
+    opens org.example.pacman.app to javafx.fxml;
 }

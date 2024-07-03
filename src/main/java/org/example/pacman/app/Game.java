@@ -1,16 +1,18 @@
-package org.example.pacman;
+package org.example.pacman.app;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import org.example.pacman.Ghost.Clyde;
-import org.example.pacman.Ghost.Inky;
-import org.example.pacman.Ghost.Pinky;
-import org.example.pacman.Ghost.Shadow;
-import org.example.pacman.Map.Cell;
+import org.example.pacman.ghost.Clyde;
+import org.example.pacman.ghost.Inky;
+import org.example.pacman.ghost.Pinky;
+import org.example.pacman.ghost.Shadow;
+import org.example.pacman.map.Cell;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -25,7 +27,7 @@ public class Game {
     private final List<Inky> inkies = new ArrayList<>();
     private Pacman pacman;
 
-    Game(int blockSize, Group root) throws Exception {
+    public Game(int blockSize, Group root) throws Exception {
         this.blockSize = blockSize;
         this.root = root;
         Point2D tmp = populateMap();
@@ -58,15 +60,6 @@ public class Game {
 
     public List<List<Cell>> getMap() {
         return map;
-    }
-
-    public void printMap() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                System.out.print(map.get(i).get(j).getBinaryCode() + " ");
-            }
-            System.out.println();
-        }
     }
 
     public void drawMap() {
@@ -143,5 +136,14 @@ public class Game {
         for (Inky inky : inkies) {
             inky.move(map);
         }
+    }
+
+    public void clear(){
+        map.clear();
+        shadows.clear();
+        clydes.clear();
+        pinkies.clear();
+        inkies.clear();
+        pacman = null;
     }
 }

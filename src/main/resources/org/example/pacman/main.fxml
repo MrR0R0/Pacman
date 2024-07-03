@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0" style="-fx-background-color: #000000;" styleClass="border" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pacman.GameMenu">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="556.8000427246094" minWidth="10.0" prefWidth="480.8000122070313" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="441.7999633789062" minWidth="10.0" prefWidth="420.1999877929687" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="496.6" minHeight="10.0" prefHeight="496.6" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="534.0" prefWidth="500.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="491.0" layoutX="5.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../map2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="166.0" fitWidth="233.0" layoutX="134.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../map1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="62.0" fitWidth="58.0" layoutX="438.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../leaderboard.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="58.0" fitWidth="171.0" layoutX="5.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../main.png" />
+               </image>
+            </ImageView>
+            <Button id="Button-2" layoutX="202.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadGame2" text="Google Munch" />
+            <Button id="Button-3" layoutX="213.0" layoutY="384.0" mnemonicParsing="false" onAction="#loadGame1" text="Child's Play" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="413.0" prefWidth="431.0" GridPane.columnIndex="1">
+         <children>
+            <ImageView fitHeight="443.0" fitWidth="415.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../map3.png" />
+               </image>
+            </ImageView>
+            <Button id="Button-1" layoutX="179.0" layoutY="460.0" mnemonicParsing="false" onAction="#loadGame3" text="Pixel Labyrinth" />
+         </children>
+      </AnchorPane>
+   </children>
+    <stylesheets>
+        <URL value="@main.css" />
+    </stylesheets>
+</GridPane>

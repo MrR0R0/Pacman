@@ -3,20 +3,13 @@ package org.example.pacman;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import org.example.pacman.Database.Connect;
 
 import java.io.IOException;
-
-import static org.example.pacman.Application.root;
 
 public class SignUp {
     @FXML
@@ -29,7 +22,7 @@ public class SignUp {
     static public final String USERNAME_REGEX = "[a-zA-Z0-9_]+";
     static public final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z]).+$";
 
-    public void signUp(ActionEvent actionEvent) throws IOException, InterruptedException {
+    public void signUp(ActionEvent actionEvent){
         String username = usernameSignUp.getText();
         String password = passwordSignUp.getText();
         if(User.signedUpUsers.containsKey(username)){
@@ -61,7 +54,6 @@ public class SignUp {
                     Thread.sleep(1500);
                     Platform.runLater(() -> {
                         try {
-                            warningLabel.setTextFill(Color.RED);
                             Application.loadLoginMenu();
                         } catch (IOException e) {
                             throw new RuntimeException(e);

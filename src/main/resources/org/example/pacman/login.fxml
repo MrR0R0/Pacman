@@ -10,13 +10,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="border" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pacman.Login">
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="718.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="Button-1" layoutX="387.0" layoutY="301.0" mnemonicParsing="false" onAction="#signUp" prefHeight="38.0" prefWidth="59.0" text="Sign Up" />
+            <Button id="Button-1" layoutX="424.0" layoutY="284.0" mnemonicParsing="false" onAction="#signUp" prefHeight="38.0" prefWidth="59.0" text="Sign Up" />
             <Label layoutX="200.0" layoutY="190.0" text="Password:" textFill="WHITE">
                <font>
                   <Font size="20.0" />
@@ -26,8 +27,8 @@
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <PasswordField fx:id="passwordInput" layoutX="340.0" layoutY="190.0" opacity="0.9" prefHeight="30.0" prefWidth="170.0" promptText="password" style="-fx-background-radius: 7;" />
-            <Label layoutX="208.0" layoutY="307.0" prefHeight="27.0" prefWidth="159.0" text="Don't have an account?" textFill="#c6c970">
+            <PasswordField fx:id="passwordInput" layoutX="339.0" layoutY="190.0" opacity="0.9" prefHeight="30.0" prefWidth="170.0" promptText="password" style="-fx-background-radius: 7;" />
+            <Label layoutX="234.0" layoutY="290.0" prefHeight="27.0" prefWidth="159.0" text="Don't have an account?" textFill="#c6c970">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -36,11 +37,20 @@
                   <Image url="@../../../title.png" />
                </image>
             </ImageView>
-            <Button id="Button-2" fx:id="loginButton" layoutX="304.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="72.0" text="Log In">
+            <Button id="Button-2" layoutX="538.0" layoutY="155.0" mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="72.0" text="Log In">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
+            <StackPane layoutX="205.0" layoutY="232.0" prefHeight="36.0" prefWidth="300.0">
+               <children>
+                  <Label fx:id="warningLogin" alignment="CENTER" contentDisplay="CENTER" textFill="RED">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
          </children>
          <BorderPane.margin>
             <Insets />

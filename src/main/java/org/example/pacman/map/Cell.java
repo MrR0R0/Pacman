@@ -1,4 +1,4 @@
-package org.example.pacman.Map;
+package org.example.pacman.map;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -17,8 +17,9 @@ public class Cell {
     public Cell(int x, int y, int code, int blockSize) {
         this.x = x;
         this.y = y;
-
-        this.binaryCode = Integer.toBinaryString(code);
+        if(code != -1){
+            this.binaryCode = Integer.toBinaryString(code);
+        }
         this.binaryCode = String.format("%" + 9 + "s", this.binaryCode).replace(" ", "0");
         if (binaryCode.charAt(0) == '1') {
             double ratio = 0.9;

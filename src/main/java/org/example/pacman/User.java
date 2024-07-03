@@ -1,6 +1,6 @@
 package org.example.pacman;
 
-import org.example.pacman.Database.Connect;
+import org.example.pacman.database.Connect;
 
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
@@ -35,5 +35,9 @@ public class User {
         for(User user : signedUpUsers.values()){
             Connect.insertUser(user);
         }
+    }
+
+    public void addScore(int map, int score){
+        scoreSeries += map + "_" + score + ",";
     }
 }

@@ -1,9 +1,9 @@
-package org.example.pacman.Ghost;
+package org.example.pacman.ghost;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.example.pacman.Game;
-import org.example.pacman.Map.Cell;
+import org.example.pacman.app.Game;
+import org.example.pacman.map.Cell;
 
 import java.util.ArrayList;
 import java.util.List;

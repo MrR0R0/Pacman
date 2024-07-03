@@ -1,10 +1,12 @@
 package org.example.pacman;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -16,7 +18,7 @@ public class Login {
     @FXML
     private PasswordField passwordInput;
     @FXML
-    private Button loginButton;
+    private Label warningLogin;
 
     public void signUp(ActionEvent actionEvent) throws IOException {
         loadSignupMenu();
@@ -27,12 +29,32 @@ public class Login {
         String password = passwordInput.getText();
         if(User.signedUpUsers.containsKey(username)){
             if(User.signedUpUsers.get(username).getPassword().equals(password)){
-                System.out.println("Login");
                 Menu.currentUser = User.signedUpUsers.get(username);
+                warningLogin.setTextFill(Color.GREENYELLOW);
+                warningLogin.setText("Logged in successfully!");
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(1000);
+                        Platform.runLater(() -> {
+                            try {
+                                Application.loadMainMenu();
+                            }
+                            catch (IOException ignored) {}
+                        });
+                    }
+                    catch (InterruptedException ignored) {
+                    }
+                }).start();
+            }
+            else{
+                warningLogin.setText("Incorrect Password!");
+                passwordInput.clear();
             }
         }
-        System.out.println(username + " " + password);
-        usernameInput.clear();
-        passwordInput.clear();
+        else{
+            warningLogin.setText("Incorrect Username!");
+            usernameInput.clear();
+            passwordInput.clear();
+        }
     }
 }

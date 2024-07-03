@@ -1,4 +1,4 @@
-package org.example.pacman;
+package org.example.pacman.app;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import org.example.pacman.Map.Cell;
+import org.example.pacman.map.Cell;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Pacman {
     private Game.Direction nextDirection;
     private Text text;
 
-    Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks) {
+    public Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks) {
         this.x = x;
         this.y = y;
         this.blockSize = blockSize;
@@ -115,6 +115,10 @@ public class Pacman {
 
     public int getY() {
         return y;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     private ImageView imageViewSetUp(String path) {
