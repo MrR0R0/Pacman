@@ -30,18 +30,18 @@
                   <Image url="@../../../map1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="62.0" fitWidth="58.0" layoutX="438.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../leaderboard.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="58.0" fitWidth="171.0" layoutX="5.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="318.0" layoutX="170.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../main.png" />
                </image>
             </ImageView>
             <Button id="Button-2" layoutX="202.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadGame2" text="Google Munch" />
             <Button id="Button-3" layoutX="213.0" layoutY="384.0" mnemonicParsing="false" onAction="#loadGame1" text="Child's Play" />
+            <ImageView fitHeight="64.0" fitWidth="70.0" layoutX="443.0" layoutY="434.0" onMouseClicked="#scoreBoard" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../leaderboard.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="413.0" prefWidth="431.0" GridPane.columnIndex="1">

@@ -6,33 +6,47 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import org.example.pacman.Application;
+import org.example.pacman.SoundEffect;
 import org.example.pacman.map.Cell;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
 
 public class Pacman {
     //U:0 R:1 D:2 L:3
-    private final int moveUnit = 3, blockSize, borderPixel = 3;
+    private final int moveUnit = 3, blockSize, borderPixel = 3, xBlocks, yBlocks;
     private int x, y, dx = moveUnit, dy = 0, angle = 0, score = 0;
+    private int lives;
     private final ImageView imageView;
+    private List<ImageView> hearts = new ArrayList<>();
     private Game.Direction nextDirection;
     private Text text;
 
-    public Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks) {
+    public Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks, int lives) {
         this.x = x;
         this.y = y;
+        this.xBlocks = xBlocks;
+        this.yBlocks = yBlocks;
         this.blockSize = blockSize;
         this.nextDirection = dir;
-        //setting up image
+        this.lives = lives;
+        //setting up images
         imageView = imageViewSetUp("file:src\\main\\resources\\pacman.gif");
         text = new Text();
         text.setText("Score: " + score);
         text.setX(blockSize * xBlocks - 150);
-        text.setY(blockSize * yBlocks + 50);
+        text.setY(blockSize * yBlocks + 30);
         text.setFont(Font.font("Verdana", 20));
         text.setFill(Color.YELLOWGREEN);
+
+        //setting up hearts
+        heartSetUp();
+        for(int i=0; i<lives; i++){
+            root.getChildren().add(hearts.get(i));
+        }
         root.getChildren().add(text);
         root.getChildren().add(imageView);
     }
@@ -53,12 +67,16 @@ public class Pacman {
         if (currentCell.hasSmallDot()) {
             score += 10;
             text.setText("Score: " + score);
+            Game.remainingDot--;
             currentCell.removeDot();
+            SoundEffect.playMunchSound();
         }
         if (currentCell.hasBigDot()) {
-            score += 20;
+            score += 50;
             text.setText("Score: " + score);
+            Game.remainingDot--;
             currentCell.removeDot();
+            SoundEffect.playYummySound();
         }
 
         //Game.Direction control
@@ -156,5 +174,35 @@ public class Pacman {
         double distanceX = abs(imageView.getX() - x);
         double distanceY = abs(imageView.getY() - y);
         return sqrt(pow(distanceY, 2) + pow(distanceX, 2)) < blockSize * 0.75;
+    }
+
+    private void heartSetUp(){
+        for(int i=0; i<lives; i++){
+            hearts.add(new ImageView(new Image("file:src\\main\\resources\\heart.jpg")));
+        }
+        for(int i=0; i<lives; i++){
+            hearts.get(i).setY(blockSize * yBlocks);
+            hearts.get(i).setX(blockSize * (1+i));
+            hearts.get(i).setPreserveRatio(true);
+            hearts.get(i).setFitHeight(blockSize);
+        }
+    }
+
+    public void removeHearts(Group root){
+        for(int i=0; i<hearts.size(); i++){
+            root.getChildren().remove(hearts.get(i));
+        }
+    }
+
+    public void removeALife(){
+        lives--;
+    }
+
+    public int getLives(){
+        return lives;
+    }
+
+    public void removeFromScene(Group root){
+        root.getChildren().remove(imageView);
     }
 }

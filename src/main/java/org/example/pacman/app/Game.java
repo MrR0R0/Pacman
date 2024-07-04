@@ -26,16 +26,18 @@ public class Game {
     private final List<Pinky> pinkies = new ArrayList<>();
     private final List<Inky> inkies = new ArrayList<>();
     private Pacman pacman;
+    public static int remainingDot;
 
     public Game(int blockSize, Group root) throws Exception {
         this.blockSize = blockSize;
         this.root = root;
+        remainingDot = 0;
         Point2D tmp = populateMap();
         row = (int) tmp.getX();
         col = (int) tmp.getY();
     }
 
-    public Point2D populateMap() throws Exception {
+    private Point2D populateMap() throws Exception {
         File file = new File("src\\main\\resources\\map.txt");
         Scanner sc = new Scanner(file);
         int rowCounter = 0, colCounter = 0;
@@ -50,6 +52,9 @@ public class Game {
                         Integer.parseInt(tmpString.trim()),
                         blockSize);
                 tmpList.add(tmpCell);
+                if(tmpCell.hasBigDot() || tmpCell.hasSmallDot()){
+                    remainingDot++;
+                }
                 colCounter++;
             }
             rowCounter++;
@@ -140,6 +145,31 @@ public class Game {
 
     public void clear(){
         map.clear();
+        shadows.clear();
+        clydes.clear();
+        pinkies.clear();
+        inkies.clear();
+        pacman.removeHearts(root);
+        pacman = null;
+    }
+
+    public void reset(){
+        if(pacman!=null){
+            pacman.removeFromScene(root);
+            pacman.removeHearts(root);
+        }
+        for(Shadow shadow : shadows){
+            shadow.removeFromScene(root);
+        }
+        for(Inky inky : inkies){
+            inky.removeFromScene(root);
+        }
+        for(Pinky pinky : pinkies){
+            pinky.removeFromScene(root);
+        }
+        for(Clyde clyde : clydes){
+            clyde.removeFromScene(root);
+        }
         shadows.clear();
         clydes.clear();
         pinkies.clear();

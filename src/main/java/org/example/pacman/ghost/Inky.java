@@ -89,4 +89,5 @@ public class Inky extends Ghost{
         imageView.setX(x);
         imageView.setY(y);
     }
+
 }

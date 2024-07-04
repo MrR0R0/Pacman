@@ -1,5 +1,6 @@
 package org.example.pacman.ghost;
 
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.pacman.app.Game;
@@ -81,6 +82,10 @@ abstract public class Ghost {
         if (dir == Game.Direction.L)
             return Game.Direction.R;
         return Game.Direction.L;
+    }
+
+    public void removeFromScene(Group root){
+        root.getChildren().remove(imageView);
     }
 
 }
