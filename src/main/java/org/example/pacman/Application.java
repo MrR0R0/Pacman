@@ -66,7 +66,7 @@ public class Application extends javafx.application.Application {
 
     public static void loadMainMenu() throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(Application.class.getResource("main.fxml")));
-        scene = new Scene(root, 950, 500);
+        scene = new Scene(root, 1100, 600);
         Application.stage.setTitle("Main Menu");
         Application.stage.setScene(scene);
         Application.stage.show();

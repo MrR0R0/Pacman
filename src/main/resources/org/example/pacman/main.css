@@ -9,7 +9,7 @@
             radial-gradient(center 50% 50%, radius 100%, #afa810, #deba06);
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
     -fx-font-weight: bold;
-    -fx-font-size: 0.6em;
+    -fx-font-size: 1em;
 }
 #Button-2:hover {
     -fx-background-color:
@@ -38,7 +38,7 @@
             radial-gradient(center 50% 50%, radius 100%, #9d350c, #c23a3a);
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
     -fx-font-weight: bold;
-    -fx-font-size: 0.6em;
+    -fx-font-size: 1em;
 }
 #Button-1:hover {
     -fx-background-color:
@@ -67,7 +67,7 @@
             radial-gradient(center 50% 50%, radius 100%, #50af10, #06de0a);
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
     -fx-font-weight: bold;
-    -fx-font-size: 0.6em;
+    -fx-font-size: 1em;
 }
 #Button-3:hover {
     -fx-background-color:
@@ -96,7 +96,7 @@
             radial-gradient(center 50% 50%, radius 100%, #af108a, #de0652);
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
     -fx-font-weight: bold;
-    -fx-font-size: 0.6em;
+    -fx-font-size: 1em;
 }
 #Button-4:hover {
     -fx-background-color:
