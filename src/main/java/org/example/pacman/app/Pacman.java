@@ -6,7 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import org.example.pacman.Application;
 import org.example.pacman.SoundEffect;
+import org.example.pacman.ghost.Ghost;
 import org.example.pacman.map.Cell;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import static java.lang.Math.*;
 
 public class Pacman {
     //U:0 R:1 D:2 L:3
-    private final int moveUnit = 3, blockSize, borderPixel = 3, xBlocks, yBlocks;
+    private final int moveUnit = Ghost.moveUnit, blockSize, borderPixel = 3, xBlocks, yBlocks;
     private int x, y, dx = moveUnit, dy = 0, angle = 0, score = 0;
     private int lives;
     private final ImageView imageView;
@@ -24,7 +26,7 @@ public class Pacman {
     private Game.Direction nextDirection;
     private final Text text;
 
-    public Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks, int lives) {
+    public Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks, int lives, int score) {
         this.x = x;
         this.y = y;
         this.xBlocks = xBlocks;
@@ -32,6 +34,7 @@ public class Pacman {
         this.blockSize = blockSize;
         this.nextDirection = dir;
         this.lives = lives;
+        this.score = score;
         //setting up images
         imageView = imageViewSetUp("file:src\\main\\resources\\pacman.gif");
         text = new Text();
@@ -68,14 +71,16 @@ public class Pacman {
             text.setText("Score: " + score);
             Game.remainingDot--;
             currentCell.removeDot();
-            SoundEffect.playMunchSound();
+            if(Application.SFX)
+                SoundEffect.playMunchSound();
         }
         if (currentCell.hasBigDot()) {
             score += 50;
             text.setText("Score: " + score);
             Game.remainingDot--;
             currentCell.removeDot();
-            SoundEffect.playYummySound();
+            if(Application.SFX)
+                SoundEffect.playMunchSound();
         }
 
         //Game.Direction control
@@ -202,6 +207,7 @@ public class Pacman {
     }
 
     public void removeFromScene(Group root){
+        root.getChildren().remove(text);
         root.getChildren().remove(imageView);
     }
 }

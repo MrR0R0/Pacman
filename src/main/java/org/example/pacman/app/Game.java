@@ -128,16 +128,16 @@ public class Game {
     public void moveObjects() {
         pacman.move(map);
         for (Shadow shadow : shadows) {
-            shadow.move(map, pacman.getX(), pacman.getY());
+            shadow.move(map, pacman.getX(), pacman.getY(), null);
         }
         for (Clyde clyde : clydes) {
-            clyde.move(map);
+            clyde.move(map, 0, 0, null);
         }
         for (Pinky pinky : pinkies) {
             pinky.move(map, pacman.getX(), pacman.getY(), pacman.currentDirection());
         }
         for (Inky inky : inkies) {
-            inky.move(map);
+            inky.move(map, 0, 0, null);
         }
     }
 

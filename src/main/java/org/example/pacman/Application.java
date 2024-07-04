@@ -24,6 +24,7 @@ public class Application extends javafx.application.Application {
     static public Stage stage;
     private static double xOffset;
     private static double yOffset;
+    public static boolean SFX = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -31,7 +32,8 @@ public class Application extends javafx.application.Application {
         stage = primaryStage;
         stage.setResizable(false);
 
-        loadLoginMenu();
+        Menu.currentUser = new User("second", "nope", "");
+        loadMainMenu();
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
             try {
@@ -89,6 +91,7 @@ public class Application extends javafx.application.Application {
                 Thread.sleep(4000);
                 Platform.runLater(() -> {
                     try {
+                        stage.close();
                         Application.loadMainMenu();
                     }
                     catch (IOException ignored) {}
@@ -116,6 +119,7 @@ public class Application extends javafx.application.Application {
                 Thread.sleep(4000);
                 Platform.runLater(() -> {
                     try {
+                        stage.close();
                         Application.loadMainMenu();
                     }
                     catch (IOException ignored) {}
