@@ -84,3 +84,32 @@
     -fx-fill: white;
     -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 }
+
+#Button-4 {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #940606 0%, #850303 100%),
+            #700341,
+            #7a056a,
+            radial-gradient(center 50% 50%, radius 100%, #af108a, #de0652);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 0.6em;
+}
+#Button-4:hover {
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #8f1246 0%, #7c052f 100%),
+            #ab265d,
+            #a42245,
+            radial-gradient(center 50% 50%, radius 100%, #ee1650, #ef5c8f);
+}
+#Button-4:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+#Button-4 Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+}

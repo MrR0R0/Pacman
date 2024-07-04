@@ -1,4 +1,4 @@
-package org.example.pacman;
+package org.example.pacman.controller;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.example.pacman.Application;
+import org.example.pacman.User;
 
 import java.io.IOException;
 import java.net.URL;

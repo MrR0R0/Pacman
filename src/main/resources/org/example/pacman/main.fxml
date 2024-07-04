@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0" style="-fx-background-color: #000000;" styleClass="border" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pacman.GameMenu">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0" style="-fx-background-color: #000000;" styleClass="border" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pacman.menu.GameMenu">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="556.8000427246094" minWidth="10.0" prefWidth="480.8000122070313" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="441.7999633789062" minWidth="10.0" prefWidth="420.1999877929687" />
@@ -37,11 +37,12 @@
             </ImageView>
             <Button id="Button-2" layoutX="202.0" layoutY="170.0" mnemonicParsing="false" onAction="#loadGame2" text="Google Munch" />
             <Button id="Button-3" layoutX="213.0" layoutY="384.0" mnemonicParsing="false" onAction="#loadGame1" text="Child's Play" />
-            <ImageView fitHeight="64.0" fitWidth="70.0" layoutX="443.0" layoutY="434.0" onMouseClicked="#scoreBoard" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="450.0" layoutY="445.0" onMouseClicked="#scoreBoard" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../leaderboard.png" />
                </image>
             </ImageView>
+            <Button id="Button-4" layoutX="10.0" layoutY="460.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="413.0" prefWidth="431.0" GridPane.columnIndex="1">

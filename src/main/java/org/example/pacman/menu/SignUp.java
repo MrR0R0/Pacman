@@ -1,4 +1,4 @@
-package org.example.pacman;
+package org.example.pacman.menu;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -8,6 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.pacman.Application;
+import org.example.pacman.User;
 
 import java.io.IOException;
 

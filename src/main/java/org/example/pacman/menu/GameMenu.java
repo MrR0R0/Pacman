@@ -1,20 +1,18 @@
-package org.example.pacman;
+package org.example.pacman.menu;
 
 import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.example.pacman.Application;
+import org.example.pacman.User;
 import org.example.pacman.app.Game;
 import org.example.pacman.app.Pacman;
 import org.example.pacman.ghost.Clyde;
@@ -23,7 +21,6 @@ import org.example.pacman.ghost.Pinky;
 import org.example.pacman.ghost.Shadow;
 import org.example.pacman.map.MapGenerator;
 import java.io.IOException;
-import java.util.List;
 
 public class GameMenu implements EventHandler<KeyEvent> {
     int BLOCK_SIZE, FRAME_RATE = 40;
@@ -36,7 +33,7 @@ public class GameMenu implements EventHandler<KeyEvent> {
     private static Stage stage;
     private AnimationTimer timer;
     private int map;
-    private int initialLives = 3;
+    private final int initialLives = 3;
 
     public void loadGame1() throws Exception{
         BLOCK_SIZE = 40;
@@ -73,6 +70,11 @@ public class GameMenu implements EventHandler<KeyEvent> {
 
     public void scoreBoard(MouseEvent mouseEvent) throws IOException {
         Application.loadScoreBoard();
+    }
+
+    public void logOut(ActionEvent actionEvent) throws IOException {
+        Menu.currentUser = new User();
+        Application.loadLoginMenu();
     }
 
     private void endGame() throws IOException {
@@ -129,15 +131,9 @@ public class GameMenu implements EventHandler<KeyEvent> {
                         }
                         else{
                             switch (map){
-                                case 1 ->{
-                                    resetGame1(game.getPacman().getLives());
-                                }
-                                case 2 ->{
-                                    resetGame2(game.getPacman().getLives());
-                                }
-                                case 3 ->{
-                                    resetGame3(game.getPacman().getLives());
-                                }
+                                case 1 -> resetGame1(game.getPacman().getLives());
+                                case 2 -> resetGame2(game.getPacman().getLives());
+                                case 3 -> resetGame3(game.getPacman().getLives());
                             }
                         }
 

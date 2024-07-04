@@ -10,4 +10,8 @@ module org.example.pacman {
     exports org.example.pacman.app;
     exports org.example.pacman.ghost;
     opens org.example.pacman.app to javafx.fxml;
+    exports org.example.pacman.menu;
+    opens org.example.pacman.menu to javafx.fxml;
+    exports org.example.pacman.controller;
+    opens org.example.pacman.controller to javafx.fxml;
 }

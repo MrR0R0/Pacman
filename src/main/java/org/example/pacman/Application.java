@@ -10,6 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
+
+import org.example.pacman.menu.Menu;
+import org.example.pacman.controller.GameOverController;
+import org.example.pacman.controller.TableViewController;
+import org.example.pacman.controller.WinController;
 import org.example.pacman.database.Connect;
 
 
