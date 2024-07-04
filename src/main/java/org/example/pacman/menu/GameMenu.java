@@ -16,8 +16,10 @@ import org.example.pacman.User;
 import org.example.pacman.app.Game;
 import org.example.pacman.app.Pacman;
 import org.example.pacman.ghost.*;
+import org.example.pacman.map.Cell;
 import org.example.pacman.map.MapGenerator;
 import java.io.IOException;
+import java.util.Random;
 
 public class GameMenu implements EventHandler<KeyEvent> {
     private int BLOCK_SIZE, FRAME_RATE = 40;
@@ -30,6 +32,7 @@ public class GameMenu implements EventHandler<KeyEvent> {
     private static Stage stage;
     private AnimationTimer timer;
     private int map;
+    private Cell healthBoosterCell, pointBoosterCell;
     private final int initialLives = 3;
 
     public void loadGame1() throws Exception{
@@ -98,16 +101,51 @@ public class GameMenu implements EventHandler<KeyEvent> {
 
     private void setTimer(){
         timer = new AnimationTimer() {
+            private long healthBoosterUpdate;
+            private long pointBoosterUpdate;
+            private boolean healthBoosterOn = false;
+            private boolean pointBoosterOn = false;
             private long prevTime = 0;
             @Override
             public void handle(long now) {
                 long dt = now - prevTime;
+                if (healthBoosterUpdate == 0) {
+                    healthBoosterUpdate = now;
+                }
+                if (pointBoosterUpdate == 0) {
+                    pointBoosterUpdate = now;
+                }
                 if (dt > secPerFrame * 1e9) {
+                    //Health booster: every 10s
+                    if(now - healthBoosterUpdate > 10 * 1e9){
+                        if(!healthBoosterOn){
+                            chooseCellForHealthBoost();
+                            healthBoosterCell.addHealthBoost(root);
+                        }
+                        else{
+                            healthBoosterCell.removeHealthBoost(root);
+                        }
+                        healthBoosterOn = !healthBoosterOn;
+                        healthBoosterUpdate = now;
+                    }
+                    //Point booster: every 15s
+                    if(now - pointBoosterUpdate > 15 * 1e9){
+                        if(!pointBoosterOn){
+                            chooseCellForPointBoost();
+                            pointBoosterCell.addPointBooster(root);
+                        }
+                        else{
+                            pointBoosterCell.removePointBooster(root);
+                        }
+                        pointBoosterOn = !pointBoosterOn;
+                        pointBoosterUpdate = now;
+
+                    }
                     prevTime = now;
                     game.moveObjects();
                     if(Game.remainingDot == 0){
                         try {
-                            Menu.currentUser.addScore(map, game.getPacman().getScore() + game.getPacman().getLives()*250);
+                            Menu.currentUser.addScore(map, game.getPacman().getScore());
                             endGame();
                             Application.loadWinMenu();
                         }
@@ -187,5 +225,16 @@ public class GameMenu implements EventHandler<KeyEvent> {
         game.addInky(new Inky(BLOCK_SIZE, BLOCK_SIZE, Game.Direction.D, root, BLOCK_SIZE));
         game.addInky(new Inky(26 * BLOCK_SIZE, BLOCK_SIZE, Game.Direction.L, root, BLOCK_SIZE));
     }
-    
+
+    private void chooseCellForHealthBoost(){
+        Random random = new Random();
+        int randomIndex = random.nextInt(game.getNonWallCells().size());
+        healthBoosterCell = game.getNonWallCells().get(randomIndex);
+    }
+
+    private void chooseCellForPointBoost(){
+        Random random = new Random();
+        int randomIndex = random.nextInt(game.getNonWallCells().size());
+        pointBoosterCell = game.getNonWallCells().get(randomIndex);
+    }
 }

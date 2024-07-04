@@ -19,11 +19,13 @@ public class Game {
     private final int row, col, blockSize;
     private final Group root;
     private final List<List<Cell>> map = new ArrayList<>();
+    private final List<Cell> nonWallCells = new ArrayList<>();
     private final List<Shadow> shadows = new ArrayList<>();
     private final List<Clyde> clydes = new ArrayList<>();
     private final List<Pinky> pinkies = new ArrayList<>();
     private final List<Inky> inkies = new ArrayList<>();
     private Pacman pacman;
+    private boolean eatenHealthBooster = false, visibleHealthBooster = false;
     public static int remainingDot;
 
     public Game(int blockSize, Group root) throws Exception {
@@ -52,6 +54,9 @@ public class Game {
                 tmpList.add(tmpCell);
                 if(tmpCell.hasBigDot() || tmpCell.hasSmallDot()){
                     remainingDot++;
+                }
+                if(!tmpCell.isWall()){
+                    nonWallCells.add(tmpCell);
                 }
                 colCounter++;
             }
@@ -126,7 +131,7 @@ public class Game {
     }
 
     public void moveObjects() {
-        pacman.move(map);
+        pacman.move(map, root);
         for (Shadow shadow : shadows) {
             shadow.move(map, pacman.getX(), pacman.getY(), null);
         }
@@ -173,5 +178,9 @@ public class Game {
         pinkies.clear();
         inkies.clear();
         pacman = null;
+    }
+
+    public List<Cell> getNonWallCells(){
+        return nonWallCells;
     }
 }

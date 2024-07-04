@@ -32,8 +32,8 @@ public class Application extends javafx.application.Application {
         stage = primaryStage;
         stage.setResizable(false);
 
-        Menu.currentUser = new User("second", "nope", "");
-        loadMainMenu();
+        Menu.currentUser = new User();
+        loadLoginMenu();
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
             try {

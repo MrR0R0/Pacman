@@ -45,10 +45,7 @@ public class Pacman {
         text.setFill(Color.YELLOWGREEN);
 
         //setting up hearts
-        heartSetUp();
-        for(int i=0; i<lives; i++){
-            root.getChildren().add(hearts.get(i));
-        }
+        heartSetUp(root);
         root.getChildren().add(text);
         root.getChildren().add(imageView);
     }
@@ -57,7 +54,7 @@ public class Pacman {
         this.nextDirection = dir;
     }
 
-    public void move(List<List<Cell>> map) {
+    public void move(List<List<Cell>> map, Group root) {
         x += dx;
         y += dy;
 
@@ -81,6 +78,19 @@ public class Pacman {
             currentCell.removeDot();
             if(Application.SFX)
                 SoundEffect.playMunchSound();
+        }
+        if(currentCell.hasHealthBooster()){
+            if(lives < 5) {
+                currentCell.removeHealthBoost(root);
+                lives++;
+                removeHearts(root);
+                hearts.clear();
+                heartSetUp(root);
+            }
+        }
+        if(currentCell.hasPointBooster()){
+            currentCell.removePointBooster(root);
+            score+=500;
         }
 
         //Game.Direction control
@@ -180,7 +190,7 @@ public class Pacman {
         return sqrt(pow(distanceY, 2) + pow(distanceX, 2)) < blockSize * 0.75;
     }
 
-    private void heartSetUp(){
+    private void heartSetUp(Group root){
         for(int i=0; i<lives; i++){
             hearts.add(new ImageView(new Image("file:src\\main\\resources\\heart.jpg")));
         }
@@ -189,6 +199,9 @@ public class Pacman {
             hearts.get(i).setX(blockSize * (1+i));
             hearts.get(i).setPreserveRatio(true);
             hearts.get(i).setFitHeight(blockSize);
+        }
+        for(int i=0; i<lives; i++){
+            root.getChildren().add(hearts.get(i));
         }
     }
 

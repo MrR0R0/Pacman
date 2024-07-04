@@ -1,6 +1,8 @@
 package org.example.pacman.map;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -9,14 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
-    private final int x, y;
+    private final int x, y, blockSize;
     String binaryCode;
     private final Rectangle rect = new Rectangle();
     private final Circle circle = new Circle();
+    private boolean hasHealthBooster = false, hasPointBooster = false;
+    private ImageView healthBooster = new ImageView();
+    private ImageView pointBooster = new ImageView();
 
     public Cell(int x, int y, int code, int blockSize) {
         this.x = x;
         this.y = y;
+        this.blockSize = blockSize;
         if(code != -1){
             this.binaryCode = Integer.toBinaryString(code);
         }
@@ -104,5 +110,53 @@ public class Cell {
             circle.setStroke(Color.BLACK);
             circle.setFill(Color.BLACK);
         }
+    }
+
+    public void addHealthBoost(Group root){
+        hasHealthBooster = true;
+        healthBooster = imageViewSetUp("file:src\\main\\resources\\Strawberry.png");
+        root.getChildren().add(healthBooster);
+    }
+
+    public void addPointBooster(Group root){
+        hasPointBooster = true;
+        pointBooster = imageViewSetUp("file:src\\main\\resources\\Melon.png");
+        root.getChildren().add(pointBooster);
+    }
+
+    public void removeHealthBoost(Group root){
+        hasHealthBooster = false;
+        root.getChildren().remove(healthBooster);
+    }
+
+    public void removePointBooster(Group root){
+        hasPointBooster = false;
+        root.getChildren().remove(pointBooster);
+    }
+
+    public boolean hasHealthBooster() {
+        return hasHealthBooster;
+    }
+
+    public boolean hasPointBooster() {
+        return hasPointBooster;
+    }
+
+    public boolean hasBooster(){
+        return hasPointBooster || hasHealthBooster;
+    }
+
+    private ImageView imageViewSetUp(String path) {
+        Image image = new Image(path);
+        ImageView imageView = new ImageView(image);
+        imageView.setX(this.x);
+        imageView.setY(this.y);
+        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(blockSize);
+        return imageView;
+    }
+
+    public boolean isWall(){
+        return binaryCode.charAt(0) == '1';
     }
 }
