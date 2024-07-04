@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -54,10 +53,8 @@ public class TableViewController implements Initializable {
     }
 
     public static class tableUser {
-        private StringProperty name;
-        private IntegerProperty map1Score;
-        private IntegerProperty map2Score;
-        private IntegerProperty map3Score;
+        private final StringProperty name;
+        private final IntegerProperty map1Score, map2Score, map3Score;
 
         public tableUser(String name, int map1Score, int map2Score, int map3Score) {
             this.name = new SimpleStringProperty(name);

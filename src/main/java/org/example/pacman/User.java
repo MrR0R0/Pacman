@@ -3,9 +3,7 @@ package org.example.pacman;
 import org.example.pacman.database.Connect;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class User {
     private String username, password, scoreSeries;
@@ -44,15 +42,6 @@ public class User {
         scoreSeries += map + "_" + score + ",";
     }
 
-    public List<String> scores(){
-        String[] stringArray = scoreSeries.split(",");
-        List<String> tmpList = new ArrayList<>();
-        for (String str : stringArray) {
-            tmpList.add(str.trim());
-        }
-        return tmpList;
-    }
-
     public String lastScore(){
         String[] stringArray = scoreSeries.split(",");
         return stringArray[stringArray.length-1].substring(2);
@@ -62,15 +51,9 @@ public class User {
         String[] stringArray = scoreSeries.split(",");
         for (String str : stringArray) {
             switch (str.charAt(0)){
-                case '1'->{
-                    maxMap1 = Math.max(maxMap1, Integer.parseInt(str.substring(2)));
-                }
-                case '2'->{
-                    maxMap2 = Math.max(maxMap2, Integer.parseInt(str.substring(2)));
-                }
-                case '3'->{
-                    maxMap3 = Math.max(maxMap3, Integer.parseInt(str.substring(2)));
-                }
+                case '1'-> maxMap1 = Math.max(maxMap1, Integer.parseInt(str.substring(2)));
+                case '2'-> maxMap2 = Math.max(maxMap2, Integer.parseInt(str.substring(2)));
+                case '3'-> maxMap3 = Math.max(maxMap3, Integer.parseInt(str.substring(2)));
             }
         }
     }

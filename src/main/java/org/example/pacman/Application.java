@@ -1,25 +1,15 @@
 package org.example.pacman;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import javafx.stage.StageStyle;
 import org.example.pacman.database.Connect;
 
 
@@ -36,7 +26,7 @@ public class Application extends javafx.application.Application {
         stage = primaryStage;
         stage.setResizable(false);
 
-        loadMainMenu();
+        loadLoginMenu();
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
             try {

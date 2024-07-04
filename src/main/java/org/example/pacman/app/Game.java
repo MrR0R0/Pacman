@@ -9,10 +9,8 @@ import org.example.pacman.ghost.Shadow;
 import org.example.pacman.map.Cell;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game {

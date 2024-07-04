@@ -8,5 +8,6 @@ module org.example.pacman {
     exports org.example.pacman;
     exports org.example.pacman.map;
     exports org.example.pacman.app;
+    exports org.example.pacman.ghost;
     opens org.example.pacman.app to javafx.fxml;
 }

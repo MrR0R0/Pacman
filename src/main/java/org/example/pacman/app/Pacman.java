@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import org.example.pacman.Application;
 import org.example.pacman.SoundEffect;
 import org.example.pacman.map.Cell;
 
@@ -21,9 +20,9 @@ public class Pacman {
     private int x, y, dx = moveUnit, dy = 0, angle = 0, score = 0;
     private int lives;
     private final ImageView imageView;
-    private List<ImageView> hearts = new ArrayList<>();
+    private final List<ImageView> hearts = new ArrayList<>();
     private Game.Direction nextDirection;
-    private Text text;
+    private final Text text;
 
     public Pacman(int x, int y, Game.Direction dir, Group root, int blockSize, int xBlocks, int yBlocks, int lives) {
         this.x = x;
@@ -189,8 +188,8 @@ public class Pacman {
     }
 
     public void removeHearts(Group root){
-        for(int i=0; i<hearts.size(); i++){
-            root.getChildren().remove(hearts.get(i));
+        for (ImageView heart : hearts) {
+            root.getChildren().remove(heart);
         }
     }
 
