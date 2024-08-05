@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -31,10 +32,10 @@ public class Application extends javafx.application.Application {
         User.signedUpUsers = Connect.getUsers();
         stage = primaryStage;
         stage.setResizable(false);
-
+        stage.getIcons().add(new Image("file:src\\main\\resources\\favicon.jpg"));
         Menu.currentUser = new User();
         loadLoginMenu();
-        primaryStage.setOnCloseRequest(event -> {
+        stage.setOnCloseRequest(event -> {
             event.consume();
             try {
                 User.saveToDatabase();
@@ -82,9 +83,9 @@ public class Application extends javafx.application.Application {
         controller.changeLabelText(Menu.currentUser.lastScore());
 
         scene = new Scene(root, 400, 400);
-        Application.stage.setTitle("You win!");
-        Application.stage.setScene(scene);
-        Application.stage.show();
+        stage.setTitle("You win!");
+        stage.setScene(scene);
+        stage.show();
 
         new Thread(() -> {
             try {
